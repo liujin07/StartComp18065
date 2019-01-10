@@ -1,0 +1,18 @@
+Package: StartComp18065
+Type: Package
+Title: final project
+Version: 1.0
+Author: 18065
+Maintainer: liujin <602992151@qq.com>
+Description: The purpose of this function is to generate random Numbers. 
+ The r package is mainly used to generate a random sample from beta (a, b) based on different methods,
+ and to to generate samples from a Rayleigh(σ) distribution,using antithetic variables.
+License: GPL (>= 2)
+Encoding: UTF-8
+LazyData: true
+Imports: ggplot2, knitr, rmarkdown, boot, survival
+RoxygenNote: 6.1.1
+Suggests: knitr, rmarkdown
+VignetteBuilder: knitr
+URL: http://github.com/liujin07/StatComp18065
+BugReports: http://github.com/liujin07/StatComp18065/issues

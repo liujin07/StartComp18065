@@ -1,0 +1,29 @@
+#' @title a function to generate samples from a Rayleigh(σ) distribution
+#' @description *Implement a function to generate samples from a Rayleigh(σ) distribution,using antithetic variables.
+#'               What is the percent reduction in variance of (X+X)/2?
+#'               compared with (X 1 +X 2)/2 for independent X 1 , X 2 ?
+#' @param n The number of random Numbers generated
+#' @param sigma Parameter of Rayleigh(σ) distribution
+#' @param ant Parameter of function
+#' @return a random sample of size \code{n}
+#' @examples
+#' \dontrun{
+#' idpt_sample <-Rayleigh(4000,2,ant = F)#obtain 4000 independent samples
+#' ant_sample<-Rayleigh(4000,2,ant = T)#4000 antithetic samples
+#' var_idpt_sample<- var((idpt_sample[1:2000]+idpt_sample[2001:4000])/2)#compute the variance of independent sample
+#' var_ant_sample <- var((ant_sample[1:2000]+ant_sample[2001:4000])/2)#compute the variance of antithetic sample
+#' cat('the variance of independent sample is',var_idpt_sample,'.\n
+#'     the variance of antithetic sample is',var_ant_sample,'.\n
+#'     the percentage of variance reduction is',(var_idpt_sample-var_ant_sample)/var_idpt_sample,'.\n\n
+#'     the covariance of independent sample is',(cov(idpt_sample[1:2000],ant_sample[2001:4000]))) # show the variance
+#' }
+#' @export
+Rayleigh <- function(n,sigma,ant = T){
+  m <- floor(n/2)
+  u <- runif(m)
+  if(ant) v<-1-u else v<- runif(m)
+  u<-c(u,v)
+  sample<-numeric(length(u))
+  sample<-(-(2*sigma^2)*(log(1-u)))^(1/2)
+  return(sample)
+}
